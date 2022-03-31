@@ -1,0 +1,89 @@
+div class="flex w-full"
+  /! ==== Histories ========
+  div class="w-3/5"
+    div class="h-32 px-5 border-2 my-5 bg-white flex items-center"
+      - current_user.following.each do |followed|
+        div class="text-center mr-5"
+          div class="h-[65px] w-[65px] rounded-full mb-2 ring ring-orange-300 ring-offset-3 overflow-hidden"
+            img class="h-full" src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg"
+          div class="text-center mr-5"
+          - user = User.find(followed.followed_id)
+          = link_to(user_path(user.id)) do
+            p class="text-xs font-semibold" #{user.username}
+
+    /! ====== Posts =========
+    - @users.each do |user|
+      - if user.show_followed(current_user, user) == 1
+        -if user != current_user
+          == render partial: 'post', collection: user.posts.order(created_at: :desc)
+  /! ========== Sugerencias ============
+  div class="relative"
+    div class="fixed w-[22rem]"
+      div class="my-5 h-screen w-full"
+        /! ======= Show Name Profile =========
+        div class="h-28 items-center flex px-5 w-full justify-between"
+          div class="flex items-center"
+            div class="rounded-full h-[65px] w-[65px] overflow-hidden mr-5"
+              img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" class="h-full"
+            div class="ml-[5px]"
+              = link_to(user_path(current_user.id)) do
+                p class="font-semibold text-sm"
+                  | #{current_user.username}
+              p class="text-sm text-gray-500"
+                | #{current_user.name}
+          a class="font-semibold text-sm text-blue-400 cursor-pointer"
+            | Switch
+        /! ======= End name Profile =========
+        div class="px-5 h-full"
+          div class="flex justify-between mb-5"
+            h4 class="text-gray-400 font-semibold text-[14px]"
+              | Suggestions for you
+            a class="text-gray-700 font-semibold text-xs cursor-pointer"
+              | See all
+          div
+            - @users.sample(@users.length).first(6).each do |user|
+              - if user.show_followed(current_user, user) != 1
+                -if user != current_user
+                  div class="flex mb-2 items-center w-full justify-between"
+                    div class="flex items-center"
+                      div class="rounded-full h-[35px] w-[35px] overflow-hidden mr-5"
+                        img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" class="h-full"
+                      div class="ml-[5px] overflow-hidden w-48"
+                        = link_to(user_path(user.id)) do
+                          p class="font-semibold text-sm"
+                            | #{user.username}
+                        p class="text-xs text-gray-500"
+                          | suggestion for you
+                    = link_to 'Follow', user_follows_path(user), data: { turbo_method: :post }, class: 'font-semibold text-sm text-blue-400 cursor-pointer'
+          div class="overflow-hidden mt-10"
+            ul class="flex flex-wrap"
+              li class="text-xs mr-4 text-gray-400"
+                a class="cursor-pointer" information
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Help
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Press
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" API
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Job
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Privacy
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Conditions
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Locations
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" highlighted accounts
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Hashtag
+              li class="list-disc text-xs text-gray-400 mr-4"
+                a class="cursor-pointer" Language
+
+            p class="text-xs text-gray-400 mt-10"
+              |  © 2022 INSTAGRAM FROM META
+
+
+
+
+

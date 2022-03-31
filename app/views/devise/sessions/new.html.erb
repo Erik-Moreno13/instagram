@@ -1,0 +1,62 @@
+<!-- =========== Login Card =================== -->
+<div class=" mx-auto max-w-[800px] h-screen flex items-center">
+  <!-- =========== start image Phone =================== -->
+  <div class="w-3/5 ">
+    <div class="self-center h-full w-full h-[581.15px]" style='background-image: url("https://www.instagram.com/static/images/homepage/phones/home-phones-2x.png/cbc7174b4f05.png"); background-size: 468.32px 634.15px; background-position: -46px 0'>
+      <div class="flex">
+        <img src="https://www.instagram.com/static/images/homepage/screenshots/screenshot1-2x.png/cfd999368de3.png" alt="" class=" left-[112px] top-[26px] h-[538.84px] w-[250px] relative">
+      </div>
+    </div>
+
+  </div>
+  <!-- =========== end image Phone =================== -->
+  <!-- =========== start form Login =================== -->
+  <div class="w-2/4 ml-10">
+    <div class="">
+      <div class="bg-white border-[1px] border-gray-300">
+        <!-- =========== start Logo =================== -->
+        <div class="w-full h-24 flex items-center justify-center">
+          <img class="w-70 h-12" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="instagram">
+        </div>
+        <!-- =========== End Logo =================== -->
+        <div class="w-full px-[40px] py-5">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= f.email_field :email, autofocus: true, placeholder: "Phone number, username or email", class: "text-sm placeholder:text-xs w-full rounded-md h-[40px] mb-2 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class: "text-sm placeholder:text-xs w-full rounded-md h-[40px] mb-4 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+
+            <div class="actions">
+              <%= f.submit "Log in",  class: "text-sm w-full bg-blue-500 text-white h-8 rounded-md cursor-pointer hover:bg-blue-400 mb-4" %>
+            </div>
+          <% end %>
+        <div class="flex items-center mb-6">
+          <div class="border-gray-400 border-b-[1px] flex-1"></div>
+          <div class="flex-none px-[10px] text-gray-400 font-bold text-sm">OR</div>
+          <div class="border-gray-400 border-b-[1px] flex-1"></div>
+        </div>
+        <div class="flex justify-center items-center cursor-pointer mb-6">
+          <i class="fa-brands fa-facebook-square text-xl text-blue-800"></i>
+          <p class="ml-[6px] font-semibold text-sm text-blue-800"> Log in with Facebook </p>
+        </div>
+        <div class="cursor-pointer text-xs text-center">
+          <%= render "devise/shared/forgot_password"%>
+        </div>
+        </div>
+      </div>
+      <!-- =========== End form Login =================== -->
+    </div>
+    <div class="bg-white h-[70px] mt-[10px] flex items-center justify-center text-sm border-[1px] border-gray-300">
+      <p class="mr-[3px] ">Don't have an account? </p>
+      <p class="text-blue-400 font-semibold"> <%= render "devise/shared/signup"%></p>
+    </div>
+    <div class="h-[45px] flex items-center justify-center text-sm">
+     <p>Get the app</p>
+    </div>
+    <div class="flex items-center justify-center gap-4">
+      <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="" class="h-[40px]">
+      <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="" class="h-[40px]">
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,53 @@
+div class="max-w-[950px] mx-auto"
+  div class="flex mt-[20px] items-center"
+    div class="w-2/5 flex items-center justify-center"
+      div class="rounded-full overflow-hidden h-[160px] w-[160px] ring-4 ring-orange-300 ring-offset-4"
+        img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" alt="Instagram" class="h-full"
+    div
+      div class="flex items-center h-[80px] px-5"
+        h4 class="text-2xl mr-[20px]" #{@user.username}
+        -if @user == current_user
+          = link_to 'Edit profile', edit_user_registration_path, class: "mr-[20px] rounded-md py-[3px] h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm font-semibold text-gray-800"
+          div class="ml-[20px]"
+            svg aria-label="Options" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"
+              circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              path d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+        - if @user != current_user
+          = link_to 'Follow', user_follows_path(@user), data: { turbo_method: :post }, class: 'text-white hover:bg-blue-300 rounded-md py-[3px] bg-blue-400 h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm font-semibold' unless @fol.present?
+          - if @fol.present?
+            = link_to(follow_path(@user), data: { turbo_method: :delete }, class: 'rounded-md py-[3px] h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm' ) do
+              i class="fa-solid fa-user-check"
+      div class="flex items-center h-[60px] px-5"
+        p class="text-base mr-[30px]"
+          strong #{@user.posts.count}
+          |  Posts
+        p class="text-base mr-[30px]"
+          strong #{@user.followers.count }
+          |  Followers
+        p class="text-base"
+          strong #{@user.following.count }
+          |  Followings
+      div class="h-[60px] px-5 flex items-center"
+        p class="text-base font-semibold" #{@user.name }
+
+  /! ======== Histories ==============
+  div class="w-full flex px-[70px]"
+    div class="h-[160px] flex gap-[70px] items-center w-3/4"
+      div class="flex flex-col items-center justify-center cursor-pointer"
+        div class="rounded-full overflow-hidden h-[70px] w-[70px] ring-2 ring-orange-300 ring-offset-2 mb-[10px]"
+          img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" alt="Instagram" class="h-full"
+        p class="font-bold text-sm" lorem ipsum
+      div class="flex flex-col items-center justify-center cursor-pointer"
+        div class="rounded-full overflow-hidden h-[70px] w-[70px] ring-2 ring-orange-300 ring-offset-2 mb-[10px]"
+          img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" alt="Instagram" class="h-full"
+        p class="font-bold text-sm" lorem ipsum
+      div class="flex flex-col items-center justify-center cursor-pointer"
+        div class="rounded-full overflow-hidden h-[70px] w-[70px] ring-2 ring-orange-300 ring-offset-2 mb-[10px]"
+          img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" alt="Instagram" class="h-full"
+        p class="font-bold text-sm" lorem ipsum
+
+  div class="w-full border-[1px] border-b-gray-200"
+  div class="h-[90px]"
+
+  div class="flex flex-wrap gap-[40px]"
+    == render partial: 'post', collection: @user.posts

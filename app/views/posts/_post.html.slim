@@ -1,0 +1,12 @@
+div
+  br
+  h1 Post N° #{@post.id}
+  p #{@post.description}
+  p Usuario: #{@post.user.username}
+
+  - @post.comments.each do |comment|
+    p
+      strong #{comment.user.username}
+      |  #{comment.content}
+
+  == render partial: 'form_comment', locals: {comment: @post.comments}

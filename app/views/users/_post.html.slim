@@ -1,0 +1,3 @@
+= link_to([post.user, post]) do
+  div class="h-[300px] w-[290px] box-border cursor-pointer border-[1px]"
+    = image_tag post.image, class: "h-full" if post.image.attached?

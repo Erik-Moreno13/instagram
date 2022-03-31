@@ -1,0 +1,53 @@
+div class=" h-auto mb-10 bg-white"
+  /! ======== Section 1 ================
+  section class="flex p-5 border border-gray-300 items-center"
+    = link_to(user_path(post.user_id)) do
+      div class="rounded-full h-[45px] w-[45px] overflow-hidden mr-5 ring ring-orange-300 ring-offset-3"
+        img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" class="h-full"
+    = link_to(user_path(post.user_id)) do
+      p class="font-bold"
+        | #{post.user.username}
+  /! ======= Section 2 =================
+  section class="w-full h-3/4 border border-gray-300"
+    = image_tag post.image, class: "h-screen" if post.image.attached?
+
+  /! ====== Section 3 ==========
+  section class="border border-gray-300"
+    /!===== Start buttons =====
+    div class="flex gap-4 p-3"
+      /! ===== Start button like =====
+      div class="hidden text-red-500"
+      i [data-reflex="click->post#like" data-post_id="#{post.id}" data-user_id="#{current_user.id}"
+      class="fa-#{post.change_class(current_user.id)} fa-heart cursor-pointer text-2xl text-#{post.change_color(current_user.id)}"]
+      /! ===== End button like ======
+
+      /! ===== Start button comment =====
+      = link_to([post.user, post]) do
+        svg aria-label="Comentar" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"
+          path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+      /! ====== End button Comment =====
+    /!===== End buttons =====
+
+    div class="px-3 border-b-2 border-b-gray-200 pb-2"
+      /! ====== Start count likes =======
+      strong class="text-sm block mb-1 text-gray-800 font-sans"
+        | #{post.likes.count} Likes
+      /! ====== End count likes =======
+      p class="text-sm block mb-1 text-gray-800 font-sans"
+        strong #{post.user.username}
+        |  #{post.description}
+      /! ====== Start Comments Count =======
+      = link_to([post.user, post]) do
+        p class="text-base block text-gray-500"
+          | #{post.count}
+      /! ====== End Comments Count =======
+    div class="w-full flex py-1"
+      div class="w-1/12 text-center place-self-center"
+        i class="fa-regular fa-face-smile text-2xl text-gray-400"
+      div class="w-full"
+        = form_with model: [post, post.comments.build], data: {reflex: "submit->PostReflex#submit", signed_id: post.to_sgid.to_s}, url: user_post_comments_path(:user_id => post.user_id, :post_id => post.id), as: :post do |form|
+          = form.hidden_field :user_id, value:  current_user.id
+          = form.hidden_field :post_id, value: post.id
+          = form.text_field :content, :"data-content" => "#{:content}", placeholder: 'Add commentary...', class: "w-10/12 border-none placeholder:text-gray-400 placeholder:text-sm focus:border-none"
+          = form.submit 'Publish', :"data-reflex" => "click->post#create_comment", :"data-post_id" => "#{post.id}", :"data-user_id" => "#{current_user.id}", :"data-reflex-dataset" => "combined", class: "w-2/12 text-sm text-blue-400 font-semibold cursor-pointer"
+  /! ===== End section 3 ==========

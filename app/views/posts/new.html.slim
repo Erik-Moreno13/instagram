@@ -1,0 +1,13 @@
+= form_for( [@post.user, @post] ) do |f|
+  .field
+    = f.label :description
+    = f.text_field :description, class: "w-full mb-5 rounded-md border-gray-300"
+
+    .field
+      = f.label :user_id
+      = f.text_field :user_id, class: "w-full mb-5 rounded-md border-gray-300"
+    .field
+      = f.file_field :image
+
+    .action
+      = f.submit

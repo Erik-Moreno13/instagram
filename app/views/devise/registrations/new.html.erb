@@ -1,0 +1,59 @@
+<div class=" mx-auto flex justify-center mt-[30px]">
+  <div class="w-[350px]">
+    <div class="bg-white w-full px-[40px] border-[1px] border-gray-300">
+      <!-- =========== start Logo =================== -->
+      <div class="w-full h-20 flex items-center justify-center">
+        <img class="w-70 h-12" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="instagram">
+      </div>
+      <div class="text-center text-gray-400 font-bold text-md mb-4">
+        <p>Sign up to see photos and videos from your friends.</p>
+      </div>
+      <button class="py-[6px] bg-blue-400 text-center w-full rounded-md flex justify-center items-center text-white mb-6">
+        <i class="fa-brands fa-facebook-square text-xl text-white mr-[12px]"></i>
+        <span class="font-semibold text-sm"> Log in with Facebook </span>
+      </button>
+      <div class="flex items-center mb-6">
+        <div class="border-gray-400 border-b-[1px] flex-1"></div>
+        <div class="flex-none px-[10px] text-gray-400 font-bold text-sm">OR</div>
+        <div class="border-gray-400 border-b-[1px] flex-1"></div>
+      </div>
+      <div class="mb-6">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Phone number, username or email", class: "text-sm placeholder:text-xs w-full rounded-sm h-[40px] mb-2 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :name, autocomplete: "name", placeholder: "Full name", class: "text-sm placeholder:text-xs w-full rounded-sm h-[40px] mb-2 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :username, autocomplete: "name", placeholder: "Username", class: "text-sm placeholder:text-xs w-full rounded-sm h-[40px] mb-2 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password - min 6 characters", class: "text-sm placeholder:text-xs w-full rounded-sm h-[40px] mb-2 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %>
+            </div>
+            <div class="field"><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password", class: "text-sm placeholder:text-xs w-full rounded-sm h-[40px] mb-4 border-[1px] border-gray-300 focus:border-none focus:border-gray-400 bg-gray-100" %> </div>
+            <div class="actions"><%= f.submit "Sign up", class: "text-sm w-full bg-blue-500 text-white h-8 rounded-md cursor-pointer hover:bg-blue-400 mb-4" %> </div>
+        <% end %></div> <div class="h-[45px] text-center text-xs text-gray-400">
+        <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+      </div>
+      </div>
+      <div class="bg-white h-[70px] mt-[10px] flex items-center justify-center text-sm border-[1px] border-gray-300">
+        <p class="mr-[3px] ">Have an account? </p>
+        <p class="text-blue-400 font-semibold"> <%= render "devise/shared/login"%></p>
+      </div>
+      <div class="h-[45px] flex items-center justify-center text-sm">
+        <p>Get the app</p>
+      </div>
+      <div class="flex items-center justify-center gap-4">
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="" class="h-[40px]">
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="" class="h-[40px]">
+      </div>
+    </div>
+  </div>
+
+
