@@ -2,5 +2,5 @@
 
   = form.hidden_field :user_id, value:  current_user.id
   = form.hidden_field :post_id, value: @post.id
-  = form.text_field :content
-  = form.submit
+  = form.text_field :content, autocomplete: 'off', placeholder: 'Add commentary...', class: "h-[30px] w-9/12 border-none placeholder:text-gray-400 placeholder:text-sm focus:border-none"
+  = form.submit 'Publish', class: "w-2/12 text-sm text-blue-400 font-semibold cursor-pointer"

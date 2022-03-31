@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .figure {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .capa {
+        background-color: rgba(71,75,78,.3);
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+    }
+
+    .figure:hover > .capa {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 /*
 
 @layer components {

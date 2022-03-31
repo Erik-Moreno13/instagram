@@ -48,6 +48,6 @@ div class=" h-auto mb-10 bg-white"
         = form_with model: [post, post.comments.build], data: {reflex: "submit->PostReflex#submit", signed_id: post.to_sgid.to_s}, url: user_post_comments_path(:user_id => post.user_id, :post_id => post.id), as: :post do |form|
           = form.hidden_field :user_id, value:  current_user.id
           = form.hidden_field :post_id, value: post.id
-          = form.text_field :content, :"data-content" => "#{:content}", placeholder: 'Add commentary...', class: "w-10/12 border-none placeholder:text-gray-400 placeholder:text-sm focus:border-none"
-          = form.submit 'Publish', :"data-reflex" => "click->post#create_comment", :"data-post_id" => "#{post.id}", :"data-user_id" => "#{current_user.id}", :"data-reflex-dataset" => "combined", class: "w-2/12 text-sm text-blue-400 font-semibold cursor-pointer"
+          = form.text_field :content, placeholder: 'Add commentary...', class: "w-10/12 border-none placeholder:text-gray-400 placeholder:text-sm focus:border-none"
+          = form.submit 'Publish', class: "w-2/12 text-sm text-blue-400 font-semibold cursor-pointer"
   /! ===== End section 3 ==========

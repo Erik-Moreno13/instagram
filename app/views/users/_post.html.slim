@@ -1,3 +1,12 @@
-= link_to([post.user, post]) do
-  div class="h-[300px] w-[290px] box-border cursor-pointer border-[1px]"
-    = image_tag post.image, class: "h-full" if post.image.attached?
+div class="flex h-[300px] w-[290px] box-border cursor-pointer border-[1px]"
+    = link_to([post.user, post]) do
+        div class="figure h-[300px] w-[290px] box-border cursor-pointer border-[1px]"
+            = image_tag post.image, class: "h-full" if post.image.attached?
+            div class="capa h-[300px] w-[290px] flex items-center justify-center gap-[20px] text-xl text-white"
+              i class="fa-solid fa-heart"
+                span class="ml-[6px] font-sans" #{post.likes.count}
+              i class="fa-solid fa-comment"
+                span class="ml-[6px] font-sans" #{post.comments.count}
+
+
+
