@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :follows, only: [:destroy]
-  #Página principal
+
   root to: 'pages#index'
 end

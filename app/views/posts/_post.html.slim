@@ -34,11 +34,11 @@ div class="max-h-screen overflow-hidden p-[20px] flex items-center justify-cente
                       strong #{comment.user.username}
                   p class="ml-5"
                     | #{comment.content}
-                i [data-reflex="click->post#like"
-                  data-post_id="#{@post.id}"
-                  data-user_id="#{current_user.id}"
-                  class="fa-#{@post.change_class(current_user.id)} \
-                  fa-heart cursor-pointer text-xs justify-self-center text-#{@post.change_color(current_user.id)}"]
+                i [data-reflex="click->comment#like"
+                  data-comment-id="#{comment.id}"
+                  data-user-id="#{current_user.id}"
+                  class="fa-#{comment.change_class(current_user.id)} \
+                  fa-heart cursor-pointer text-xs justify-self-center text-#{comment.change_color(current_user.id)} "]
 
               div class="flex items-center font-semibold pl-[60px]  justify-between"
                 div class="flex items-center gap-[20px]"

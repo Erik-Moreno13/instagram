@@ -13,10 +13,13 @@ div class="max-w-[950px] mx-auto"
               circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               path d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
         - if @user != current_user
-          = link_to 'Follow', user_follows_path(@user), data: { turbo_method: :post }, class: 'text-white hover:bg-blue-300 rounded-md py-[3px] bg-blue-400 h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm font-semibold' unless @fol.present?
-          - if @fol.present?
-            = link_to(follow_path(@user), data: { turbo_method: :delete }, class: 'rounded-md py-[3px] h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm' ) do
-              i class="fa-solid fa-user-check"
+          button [class="#{@user.change_class_button(current_user, @user)}" data-reflex="click->user#follow click->user#change_button"
+            data-follower-id="#{current_user.id}"
+            data-followed-id="#{@user.id}"]
+            p class="#{@user.p_visibly(current_user, @user)}" Follow
+            i class="#{@user.i_visibly(current_user, @user)}"
+
+
       div class="flex items-center h-[60px] px-5"
         p class="text-base mr-[30px]"
           strong #{@user.posts.count}

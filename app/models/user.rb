@@ -14,4 +14,28 @@ class User < ApplicationRecord
   def show_followed(follower, user)
     user.followers.where(follower: follower).count
   end
+
+  def change_class_button(follower, followed)
+    if Follow.where(follower_id: follower.id, followed_id: followed.id).count == 0
+      "text-white hover:bg-blue-300 rounded-md py-[3px] bg-blue-400 h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm font-semibold"
+    else
+      "rounded-md py-[3px] h-[30px] w-[100px] border-[1px] border-gray-400 text-center text-sm"
+    end
+  end
+
+  def p_visibly(follower, followed)
+    if Follow.where(follower_id: follower.id, followed_id: followed.id).count == 0
+      ""
+    else
+      "hidden"
+    end
+  end
+
+  def i_visibly(follower, followed)
+    if Follow.where(follower_id: follower.id, followed_id: followed.id).count == 0
+      "hidden"
+    else
+      "fa-solid fa-user-check"
+    end
+  end
 end

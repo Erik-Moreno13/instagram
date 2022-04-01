@@ -18,7 +18,7 @@ div class="flex w-full"
             p class="text-xs font-semibold" #{user.username}
 
     /! ====== Posts =========
-    - @users.each do |user|
+    - @users.order(updated_at: :desc).each do |user|
       - if user.show_followed(current_user, user) == 1  || user == current_user
         == render partial: 'post', collection: user.posts.order(created_at: :desc)
   /! ========== Sugerencias ============
