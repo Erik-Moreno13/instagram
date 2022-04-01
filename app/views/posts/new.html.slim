@@ -1,13 +1,10 @@
 div class="flex min-h-[620px] flex items-center justify-center"
-  div class="h-[300px] w-full shadow-lg flex items-center justify-center gap-10 bg-white"
+  div class="flex flex-col items-center justify-center w-full h-full p-[40px] gap-4"
+    i class="fa-solid fa-upload text-[70px] text-gray-400"
+    h3 class="text-center text-3xl text-gray-400 font-bold " Upload your photos and share them with your friends
+  div class="h-[500px] w-full shadow-lg flex items-center justify-center bg-white p-[40px]"
     = form_for( [@post.user, @post] ) do |f|
       f.hidden_field :user_id
-      div class="flex items-center justify-between"
-        .field
-          = f.file_field :image, class: ""
-
-        .field.flex.flex-col.justify-center.w-full
-          = f.text_field :description, placeholder: "Description", autocomplete: "off",  class: "mb-5 rounded-md h-[100px] bg-gray-100"
-
-          .action.mt-2.w-full
-            = f.submit 'Publish',  class: "w-full rounded-md p-[10px] bg-blue-500 cursor-pointer text-white hover:bg-blue-300"
+      = f.file_field :image, class: "w-full mb-[30px] file"
+      = f.text_field :description, placeholder: "Description", autocomplete: "off",  class: "mb-5 rounded-md h-[100px] bg-gray-100 w-full border-gray-300"
+      = f.submit 'Publish',  class: "w-full rounded-md p-[10px] bg-blue-500 cursor-pointer text-white hover:bg-blue-400"

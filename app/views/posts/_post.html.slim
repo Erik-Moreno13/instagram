@@ -21,7 +21,7 @@ div class="max-h-screen overflow-hidden p-[20px] flex items-center justify-cente
             = link_to(user_path(@post.user_id)) do
               p class="font-semibold text-sm"
                 | #{@post.user.username}
-            p class="ml-[10px]" #{@post.description}
+            p class="ml-[10px] text-sm" #{@post.description}
           div class="h-[290px] px-[15px] w-full"
             - @post.comments.each do |comment|
               div class="flex items-center mt-[15px] justify-between"
@@ -30,15 +30,15 @@ div class="max-h-screen overflow-hidden p-[20px] flex items-center justify-cente
                     div class="rounded-full h-[32px] w-[32px] overflow-hidden mr-5"
                       img src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg" class="h-full"
                   = link_to(user_path(comment.user_id)) do
-                    p class=""
-                      strong #{comment.user.username}
-                  p class="ml-5"
+                    p class="text-sm font-semibold"
+                      | #{comment.user.username}
+                  p class="ml-5 text-sm"
                     | #{comment.content}
                 i [data-reflex="click->comment#like"
                   data-comment-id="#{comment.id}"
                   data-user-id="#{current_user.id}"
                   class="fa-#{comment.change_class(current_user.id)} \
-                  fa-heart cursor-pointer text-xs justify-self-center text-#{comment.change_color(current_user.id)} "]
+                  fa-heart cursor-pointer text-xs justify-self-center #{comment.change_color(current_user.id)} "]
 
               div class="flex items-center font-semibold pl-[60px]  justify-between"
                 div class="flex items-center gap-[20px]"
