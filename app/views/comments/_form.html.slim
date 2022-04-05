@@ -1,2 +1,1 @@
-= form_with model: [@post, @post.comment.build], url: user_post_comments_path(:post_id => @post.id), as: :post do |form|
-  = form.label :content
+= render(FormCommentComponent.new(post: @post, user: current_user))

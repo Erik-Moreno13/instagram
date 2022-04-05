@@ -10,7 +10,28 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
 
     if @comment.save
-      redirect_to(user_post_path(@post.user, @post))
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("new_comments_post_#{@post.id}",
+                                partial: "comments/form",
+                                locals: {post: @comment.post}),
+
+            turbo_stream.update("new_comments_post_#{@post.id}_index",
+                                partial: "comments/form_comment_index",
+                                locals: {post: @comment.post}),
+
+            turbo_stream.replace("last_comment_post_#{@post.id}", @post.last_current_user(current_user)),
+
+            turbo_stream.update("comments_count_post_#{@post.id}", @post.count),
+
+            turbo_stream.append("comments_post_#{@post.id}",
+                                 partial: "posts/comments",
+                                 locals: { comment: @comment })
+          ]
+        end
+      end
+
     else
       render action: 'new'
     end

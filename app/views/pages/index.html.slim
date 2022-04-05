@@ -1,13 +1,8 @@
 div class="flex w-full"
-  /! ==== Histories ========
+  / ==== Histories ========
   div class="w-3/5"
     div class="h-32 px-5 border-2 my-5 bg-white flex items-center"
-      div class="text-center mr-5"
-        div class="h-[65px] w-[65px] rounded-full mb-2 ring ring-orange-300 ring-offset-3 overflow-hidden"
-          img class="h-full" src="http://www.moteo.es/wp-content/uploads/2020/05/Yamaha-YZF-R1-2020-7.jpg"
-        div class="text-center mr-5"
-          = link_to(user_path(current_user)) do
-            p class="text-xs font-semibold" Your history
+
       - current_user.following.each do |followed|
         div class="text-center mr-5"
           div class="h-[65px] w-[65px] rounded-full mb-2 ring ring-orange-300 ring-offset-3 overflow-hidden"
@@ -15,12 +10,13 @@ div class="flex w-full"
           div class="text-center mr-5"
           - user = User.find(followed.followed_id)
           = link_to(user_path(user.id)) do
-            p class="text-xs font-semibold" #{user.username}
+            p class="text-xs font-regular" #{user.username}
 
-    /! ====== Posts =========
+    / ====== Posts =========
     - @users.order(updated_at: :desc).each do |user|
       - if user.show_followed(current_user, user) == 1  || user == current_user
         == render partial: 'post', collection: user.posts.order(created_at: :desc)
+
   /! ========== Sugerencias ============
   div class="relative"
     div class="fixed w-[22rem]"

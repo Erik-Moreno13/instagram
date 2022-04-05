@@ -4,14 +4,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_one_attached :image
   has_many :likes, as: :object
-
-  def change_color(user)
-    "red-500" if likes.where(user_id: user).count == 1
-  end
-
-  def change_class(user)
-    likes.where(user_id: user).count == 0 ? "regular" : "solid"
-  end
+  validates :image, :description, presence: true
 
   def name_users(post)
     if post.likes.count > 0
@@ -36,6 +29,13 @@ class Post < ApplicationRecord
       "View #{comments.count} comment"
     elsif comments.count > 1
       "View all #{comments.count} comments"
+    end
+  end
+
+  def last_current_user(user)
+    last_comment = comments.last
+    if last_comment.user == user
+      "#{last_comment.user.username} #{last_comment.content}"
     end
   end
 

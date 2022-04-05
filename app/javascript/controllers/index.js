@@ -15,8 +15,6 @@ eagerLoadControllersFrom("controllers", application)
 const consumer = await cable.getConsumer()
 StimulusReflex.initialize(application, { consumer, debug: true, isolate: true });
 
-
-
 const button = document.querySelector('.menu-btn')
 const dropdown = document.querySelector('.dropdown')
 

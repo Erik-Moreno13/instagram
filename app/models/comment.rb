@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
   has_many :likes, as: :object
+  validates :content, presence: true
 
 
   def change_color(current_user)

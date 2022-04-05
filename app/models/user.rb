@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :followers, class_name: 'Follow', foreign_key: 'followed_id'
   #Asociación con los que la cuenta está siguiendo
   has_many :following, class_name: 'Follow', foreign_key: 'follower_id'
+
+  validates :username, :name, presence: true
+  validates :username, uniqueness: {case_sensitive: false}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
